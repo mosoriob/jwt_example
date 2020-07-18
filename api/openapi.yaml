@@ -1,18 +1,14 @@
----
 openapi: 3.0.2
 info:
-  title: jwt_example
-  version: 1.0.0
-  description: ""
   contact:
+    email: mosorio@isi.edu
     name: Maximiliano Osorio
     url: https://mosorio.dev
-    email: mosorio@isi.edu
+  title: jwt_example
+  version: 1.0.0
 servers:
 - url: https://api.mosorio.dev
-  description: ""
 - url: http://localhost:8080
-  description: ""
 paths:
   /user/login:
     post:
@@ -46,15 +42,12 @@ paths:
 components:
   schemas:
     user:
-      description: ""
-      required:
-      - username
-      - password
-      type: object
       properties:
         username:
-          description: ""
           type: string
         password:
-          description: ""
           type: string
+      required:
+      - password
+      - username
+      type: object

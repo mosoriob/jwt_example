@@ -1,0 +1,19 @@
+version: '3'
+services:
+  dev:
+    image: "mosoriob/model-catalog-api:${VERSION}"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - ${API_PORT}:8080
+
+  swagger-ui:
+    image: swaggerapi/swagger-ui
+    ports:
+      - ${SWAGGER_PORT}:8080
+    volumes:
+      - "./:/tmp/"
+    environment:
+      SWAGGER_JSON: "/tmp/openapi.json"
+      BASE_URL: "/v1.0.0/ui"
