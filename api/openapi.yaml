@@ -1,0 +1,53 @@
+openapi: 3.0.2
+info:
+  contact:
+    email: mosorio@isi.edu
+    name: Maximiliano Osorio
+    url: https://mosorio.dev
+  title: jwt_example
+  version: 1.0.0
+servers:
+- url: https://api.mosorio.dev
+- url: http://localhost:8080
+paths:
+  /user/login:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/user'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                token:
+                  value:
+                    access_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb20uemFsYW5kby5jb25uZXhpb24iLCJpYXQiOjE1OTUxMTA5MDcsImV4cCI6MTY1NTExMDkwNywic3ViIjoibWludEBpc2kuZWR1In0.pyi1y926E1wPY3bI9YaHXmf7nhmXegugoWd5hRNdIck
+                    expires_in: 60000000
+                    refresh_token: IwOGYzYTlmM2YxOTQ5MGE3YmNmMDFkNTVk
+                    scope: create
+                    token_type: bearer
+          description: Returns JWT information
+  /secret:
+    get:
+      responses:
+        "200":
+          content:
+            application/json: {}
+          description: Return a wonderful secret :o
+      summary: Show a secret
+components:
+  schemas:
+    user:
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+      required:
+      - password
+      - username
+      type: object
